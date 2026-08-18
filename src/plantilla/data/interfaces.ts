@@ -103,3 +103,17 @@ export interface ContactData {
   submitLabel: string;
   contact: ContactInfo;
 }
+
+export interface Testimonio {
+  id: string;
+  quote: string;
+  authorName: string;
+  authorLabel: string;
+  authorInitials: string;
+  transitionDelayMs?: number;
+}
+
+export interface TestimoniosSectionData {
+  title: string;
+  testimonios: Testimonio[];
+}
