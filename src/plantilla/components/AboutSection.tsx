@@ -7,7 +7,7 @@ interface AboutSectionProps {
 export const AboutSection = ({ data }: AboutSectionProps) => {
   return (
     <section
-      className="py-section-gap px-margin-mobile md:px-gutter max-w-[1280px] mx-auto"
+      className="py-section-gap px-margin-mobile md:px-gutter max-w-[1280px] mx-auto scroll-mt-20"
       id="nosotros"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-stack-lg items-center">
