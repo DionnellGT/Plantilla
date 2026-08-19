@@ -38,7 +38,7 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
       className="py-section-gap px-margin-mobile md:px-gutter max-w-[1280px] mx-auto"
       id="contacto"
     >
-      <div className="text-center mb-section-gap fade-and-slide-up visible">
+      <div className="text-center mb-20 fade-and-slide-up visible">
         <h2 className="font-headline-lg text-headline-lg text-primary mb-stack-md">
           {data.title}
         </h2>
@@ -49,12 +49,12 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
 
       <form
         onSubmit={handleSubmit}
-        className="max-w-[800px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-md fade-and-slide-up visible"
+        className="border border-outline rounded-xl px-6 py-12 max-w-[900px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-md fade-and-slide-up visible"
       >
-        <div>
+        <div className="mb-6 md:mb-3">
           <label
             htmlFor="contact-name"
-            className="block font-label-md text-label-md text-muted-gold font-bold mb-2"
+            className="block font-label-md text-label-md text-gray-500 font-bold mb-3"
           >
             Nombre Completo
           </label>
@@ -69,10 +69,10 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
           />
         </div>
 
-        <div>
+        <div className="mb-6 md:mb-3">
           <label
             htmlFor="contact-phone"
-            className="block font-label-md text-label-md text-muted-gold font-bold mb-2"
+            className="block font-label-md text-label-md text-gray-500 font-bold mb-3"
           >
             Teléfono
           </label>
@@ -87,10 +87,10 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
           />
         </div>
 
-        <div>
+        <div className="mb-6 md:mb-3">
           <label
             htmlFor="contact-email"
-            className="block font-label-md text-label-md text-muted-gold font-bold mb-2"
+            className="block font-label-md text-label-md text-gray-500 font-bold mb-3"
           >
             Correo Electrónico
           </label>
@@ -105,10 +105,10 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
           />
         </div>
 
-        <div>
+        <div className="mb-6 md:mb-3">
           <label
             htmlFor="contact-project"
-            className="block font-label-md text-label-md text-muted-gold font-bold mb-2"
+            className="block font-label-md text-label-md text-gray-500 font-bold mb-3"
           >
             Proyecto de Interés
           </label>
@@ -134,7 +134,7 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
 
         <button
           type="submit"
-          className="md:col-span-2 bg-primary text-on-primary font-label-md uppercase tracking-wide py-4 hover:bg-muted-gold hover:text-primary transition-colors duration-300"
+          className="mb-6 md:mb-3 rounded-xl md:col-span-2 bg-primary text-on-primary font-label-md uppercase tracking-wide py-4 hover:bg-muted-gold hover:text-primary transition-colors duration-300"
         >
           {data.submitLabel}
         </button>

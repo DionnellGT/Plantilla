@@ -1,10 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { getContactAction } from "../action/getContact.action";
+import { useLandingBundle } from "./useLandingBundle";
+import { mapContact } from "../data/mappers";
 
 export const useContact = () => {
-  return useQuery({
-    queryKey: ["landing", "contact"],
-    queryFn: getContactAction,
-    staleTime: Infinity,
-  });
+  const { data, ...rest } = useLandingBundle();
+  return { ...rest, data: data ? mapContact(data) : undefined };
 };

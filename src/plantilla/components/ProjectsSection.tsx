@@ -9,11 +9,11 @@ interface ProjectsSectionProps {
 export const ProjectsSection = ({ data, onSelectProject }: ProjectsSectionProps) => {
   return (
     <section
-      className="py-section-gap bg-surface-container-low px-margin-mobile md:px-gutter"
+      className="py-20 bg-surface-container-low px-margin-mobile md:px-gutter"
       id="parcelas"
     >
       <div className="max-w-[1280px] mx-auto">
-        <div className="text-center mb-section-gap fade-and-slide-up visible">
+        <div className="text-center mb-20 fade-and-slide-up visible">
           <h2 className="font-headline-lg text-headline-lg text-primary mb-stack-md">
             {data.title}
           </h2>

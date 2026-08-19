@@ -1,10 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { getNavigationAction } from "../action/getNavigation.action";
+import { useLandingBundle } from "./useLandingBundle";
+import { mapNavigation } from "../data/mappers";
 
 export const useNavigation = () => {
-  return useQuery({
-    queryKey: ["landing", "navigation"],
-    queryFn: getNavigationAction,
-    staleTime: Infinity,
-  });
+  const { data, ...rest } = useLandingBundle();
+  return { ...rest, data: data ? mapNavigation(data) : undefined };
 };

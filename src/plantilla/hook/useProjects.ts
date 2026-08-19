@@ -1,10 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { getProjectsAction } from "../action/getProjects.action";
+import { useLandingBundle } from "./useLandingBundle";
+import { mapProjects } from "../data/mappers";
 
 export const useProjects = () => {
-  return useQuery({
-    queryKey: ["landing", "projects"],
-    queryFn: getProjectsAction,
-    staleTime: Infinity,
-  });
+  const { data, ...rest } = useLandingBundle();
+  return { ...rest, data: data ? mapProjects(data) : undefined };
 };

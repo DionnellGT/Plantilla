@@ -18,7 +18,10 @@ export const ProjectCard = ({ project, onSelect }: ProjectCardProps) => {
       onClick={() => onSelect(project)}
     >
       {project.badge && (
-        <div className="absolute top-4 right-4 z-10 bg-muted-gold text-primary px-3 py-1 font-label-sm uppercase">
+        <div
+          className="rounded-2xl absolute top-4 right-4 z-10 bg-muted-gold text-primary px-3 py-1 font-label-sm uppercase"
+          style={project.badgeColor ? { backgroundColor: project.badgeColor } : undefined}
+        >
           {project.badge}
         </div>
       )}

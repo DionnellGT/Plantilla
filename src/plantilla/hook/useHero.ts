@@ -1,10 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { getHeroAction } from "../action/getHero.action";
+import { useLandingBundle } from "./useLandingBundle";
+import { mapHero } from "../data/mappers";
 
 export const useHero = () => {
-  return useQuery({
-    queryKey: ["landing", "hero"],
-    queryFn: getHeroAction,
-    staleTime: Infinity,
-  });
+  const { data, ...rest } = useLandingBundle();
+  return { ...rest, data: data ? mapHero(data) : undefined };
 };

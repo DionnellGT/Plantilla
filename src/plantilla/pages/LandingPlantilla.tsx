@@ -31,25 +31,27 @@ export const LandingPlantilla = () => {
     contactData,
   ]);
 
+  const hasProjects = !!projectsData?.projects.length;
+  const hasTestimonios = !!testimoniosData?.testimonios.length;
+
   return (
     <div ref={containerRef}>
       {heroData && <HeroSection data={heroData} />}
       {aboutData && <AboutSection data={aboutData} />}
-      {projectsData && (
+      {hasProjects && (
         <ProjectsSection data={projectsData} onSelectProject={setSelectedProject} />
       )}
-      {projectsData && (
+      {hasProjects && (
         <ProjectModal
           project={selectedProject}
-          modalContent={projectsData.modalContent}
           onOpenChange={(open) => {
             if (!open) setSelectedProject(null);
           }}
         />
       )}
-      {testimoniosData && <TestimoniosSection data={testimoniosData} />}
-      {contactData && projectsData && (
-        <ContactSection data={contactData} projects={projectsData.projects} />
+      {hasTestimonios && <TestimoniosSection data={testimoniosData} />}
+      {contactData && (
+        <ContactSection data={contactData} projects={projectsData?.projects ?? []} />
       )}
     </div>
   );

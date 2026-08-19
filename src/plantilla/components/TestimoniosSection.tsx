@@ -1,4 +1,4 @@
-import { CirclePlay } from "lucide-react";
+import { Quote } from "lucide-react";
 import type { TestimoniosSectionData } from "../data/interfaces";
 
 interface TestimoniosSectionProps {
@@ -8,11 +8,11 @@ interface TestimoniosSectionProps {
 export const TestimoniosSection = ({ data }: TestimoniosSectionProps) => {
   return (
     <section
-      className="py-section-gap bg-surface-container-low px-margin-mobile md:px-gutter"
+      className="py-20 bg-surface-container-low px-margin-mobile md:px-gutter"
       id="testimonios"
     >
       <div className="max-w-[1280px] mx-auto">
-        <div className="text-center mb-section-gap fade-and-slide-up visible">
+        <div className="text-center mb-20 fade-and-slide-up visible">
           <h2 className="font-headline-lg text-headline-lg text-primary mb-stack-md">
             {data.title}
           </h2>
@@ -30,27 +30,41 @@ export const TestimoniosSection = ({ data }: TestimoniosSectionProps) => {
                   : undefined
               }
             >
-              <div className="aspect-video bg-surface-variant rounded-lg mb-stack-md flex items-center justify-center overflow-hidden relative group cursor-pointer">
-                <CirclePlay className="w-10 h-10 text-primary/50 group-hover:scale-110 transition-transform" />
-                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="aspect-video bg-surface-variant rounded-lg mb-stack-md overflow-hidden relative">
+                {testimonio.media ? (
+                  testimonio.tipoMedia === "video" ? (
+                    <video
+                      src={testimonio.media}
+                      controls
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <img
+                      src={testimonio.media}
+                      alt={testimonio.authorName}
+                      className="w-full h-full object-cover"
+                    />
+                  )
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center">
+                    <Quote className="w-10 h-10 text-primary/30" />
+                  </div>
+                )}
               </div>
 
-              <p className="font-body-md text-body-md text-on-surface-variant italic mb-stack-md">
-                "{testimonio.quote}"
-              </p>
+              {testimonio.quote && (
+                <p className="font-body-md text-body-md text-on-surface-variant italic mb-stack-md">
+                  "{testimonio.quote}"
+                </p>
+              )}
 
               <div className="flex items-center gap-2">
                 <div className="w-10 h-10 rounded-full bg-muted-gold flex items-center justify-center text-primary font-bold">
                   {testimonio.authorInitials}
                 </div>
-                <div>
-                  <p className="font-label-md text-label-md text-primary">
-                    {testimonio.authorName}
-                  </p>
-                  <p className="font-label-sm text-label-sm text-secondary">
-                    {testimonio.authorLabel}
-                  </p>
-                </div>
+                <p className="font-label-md text-label-md text-primary">
+                  {testimonio.authorName}
+                </p>
               </div>
             </div>
           ))}

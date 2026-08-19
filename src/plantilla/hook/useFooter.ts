@@ -1,10 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
-import { getFooterAction } from "../action/getFooter.action";
+import { useLandingBundle } from "./useLandingBundle";
+import { mapFooter } from "../data/mappers";
 
 export const useFooter = () => {
-  return useQuery({
-    queryKey: ["landing", "footer"],
-    queryFn: getFooterAction,
-    staleTime: Infinity,
-  });
+  const { data, ...rest } = useLandingBundle();
+  return { ...rest, data: data ? mapFooter(data) : undefined };
 };

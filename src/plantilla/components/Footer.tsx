@@ -54,7 +54,7 @@ export const Footer = ({ data }: FooterProps) => {
 
         <div className="w-full md:w-1/4">
           <h4 className="font-label-md text-label-md text-on-primary font-bold mb-stack-md">
-            Síguenos
+            {data.socialLinks.length > 0 ? "Síguenos" : ""}
           </h4>
           <div className="flex flex-col gap-unit font-label-sm text-label-sm text-secondary-fixed-dim">
             {data.socialLinks.map((social) => (
@@ -77,9 +77,9 @@ export const Footer = ({ data }: FooterProps) => {
             Encuéntranos
           </h4>
           <div className="flex flex-col gap-unit font-label-sm text-label-sm text-secondary-fixed-dim">
-            <p>{data.contact.phone}</p>
-            <p>{data.contact.email}</p>
-            <p>{data.contact.address}</p>
+            {data.contact.phone && <p>{data.contact.phone}</p>}
+            {data.contact.email && <p>{data.contact.email}</p>}
+            {data.contact.address && <p>{data.contact.address}</p>}
           </div>
         </div>
       </div>

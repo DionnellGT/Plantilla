@@ -16,7 +16,7 @@ export const WhatsAppButton = ({
   return (
     <a
       className={cn(
-        "inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-on-primary font-label-md hover:bg-muted-gold transition-colors duration-300",
+        "inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-on-primary font-label-md hover:bg-muted-gold transition-colors duration-300 rounded-2xl",
         className
       )}
       href={href}
