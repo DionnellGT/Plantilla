@@ -35,7 +35,7 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
 
   return (
     <section
-      className="py-section-gap px-margin-mobile md:px-gutter max-w-[1280px] mx-auto scroll-mt-20"
+      className="py-20 px-margin-mobile md:px-gutter max-w-[1280px] mx-auto scroll-mt-20"
       id="contacto"
     >
       <div className="text-center mb-20 fade-and-slide-up visible">

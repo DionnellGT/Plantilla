@@ -1,5 +1,6 @@
 import { Quote } from "lucide-react";
 import type { TestimoniosSectionData } from "../data/interfaces";
+import  { cn } from "@/lib/utils";
 
 interface TestimoniosSectionProps {
   data: TestimoniosSectionData;
@@ -30,7 +31,9 @@ export const TestimoniosSection = ({ data }: TestimoniosSectionProps) => {
                   : undefined
               }
             >
-              <div className="aspect-video bg-surface-variant rounded-lg mb-stack-md overflow-hidden relative">
+              <div className={cn(testimonio.tipoMedia === "video" ? 
+                                  "aspect-square bg-surface-variant rounded-lg mb-stack-md overflow-hidden relative"
+                                  : "aspect-square bg-surface-variant rounded-lg mb-stack-md overflow-hidden relative")}>
                 {testimonio.media ? (
                   testimonio.tipoMedia === "video" ? (
                     <video
