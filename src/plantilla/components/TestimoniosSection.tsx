@@ -65,7 +65,7 @@ export const TestimoniosSection = ({ data }: TestimoniosSectionProps) => {
                 <div className="w-10 h-10 rounded-full bg-muted-gold flex items-center justify-center text-primary font-bold">
                   {testimonio.authorInitials}
                 </div>
-                <p className="font-label-md text-label-md text-primary">
+                <p className="font-label-md text-label-md text-primary font-semibold">
                   {testimonio.authorName}
                 </p>
               </div>
