@@ -1,6 +1,5 @@
-import type { ProjectsSectionData } from "./interfaces";
 
-export const projectsSectionData = {
+export const projectsSectionData = { 
   title: "Parcelas y Campos",
   subtitle: "Crédito directo a 11, 24 y 36 meses.",
   projects: [
