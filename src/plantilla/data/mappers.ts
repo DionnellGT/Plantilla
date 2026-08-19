@@ -66,6 +66,7 @@ export const mapHero = (bundle: ApiLandingBundle): HeroData => {
   return {
     title: banner?.titulo || "Es tiempo de cumplir un sueño",
     subtitle: banner?.subtitulo || banner?.descripcion || "",
+    descripcion: banner?.descripcion || "",
     ctaLabel: "Ver Parcelas",
     ctaHref: "#parcelas",
     backgroundImage: banner?.imagen || LOGO_URL,

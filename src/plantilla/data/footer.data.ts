@@ -1,5 +1,5 @@
 import type { FooterData } from "./interfaces";
-import { BRAND_NAME, CONTACT_INFO, LOGO_URL } from "./brand.data";
+import { BRAND_NAME, LOGO_URL } from "./brand.data";
 
 export const footerData: FooterData = {
   logo: LOGO_URL,
@@ -29,5 +29,11 @@ export const footerData: FooterData = {
       icon: "facebook",
     },
   ],
-  contact: CONTACT_INFO,
+  contact: {
+    email: "",
+    phone: "",
+    address: "",
+    whatsappNumber: "",
+    whatsappLink: ""
+  },
 };

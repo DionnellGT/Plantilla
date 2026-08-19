@@ -1,5 +1,4 @@
 import type { ContactData } from "./interfaces";
-import { CONTACT_INFO } from "./brand.data";
 
 export const contactData: ContactData = {
   title: "Contáctanos",
@@ -10,5 +9,11 @@ export const contactData: ContactData = {
   emailPlaceholder: "ejemplo@correo.com",
   projectPlaceholder: "Selecciona un proyecto",
   submitLabel: "Enviar Mensaje",
-  contact: CONTACT_INFO,
+  contact: {
+    email: "",
+    phone: "",
+    address: "",
+    whatsappNumber: "",
+    whatsappLink: ""
+  },
 };

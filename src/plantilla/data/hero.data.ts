@@ -3,6 +3,7 @@ import type { HeroData } from "./interfaces";
 export const heroData: HeroData = {
   title: "Es tiempo de cumplir un sueño",
   subtitle: "Parcelas de 5.000 m2 en el Sur de Chile",
+  descripcion: "Descubre la oportunidad de invertir en parcelas y campos con crédito directo a 11, 24 y 36 meses. Disfruta de la tranquilidad y belleza natural del Sur de Chile mientras aseguras tu futuro.",
   ctaLabel: "Ver Parcelas",
   ctaHref: "#parcelas",
   backgroundImage:
