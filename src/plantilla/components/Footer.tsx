@@ -24,7 +24,7 @@ export const Footer = ({ data }: FooterProps) => {
         <div className="w-full md:w-1/3">
           <img
             alt={data.logoAlt}
-            className="h-12 w-auto mb-stack-md brightness-0 invert"
+            className="h-12 w-auto mb-stack-md  "
             src={data.logo}
           />
           <p className="font-body-md text-body-md text-on-primary/70 mb-stack-md">
