@@ -9,7 +9,7 @@ interface TestimoniosSectionProps {
 export const TestimoniosSection = ({ data }: TestimoniosSectionProps) => {
   return (
     <section
-      className="py-20 bg-surface-container-low px-margin-mobile md:px-gutter scroll-mt-20"
+      className="py-20 bg-surface-container-low px-margin-mobile md:px-gutter scroll-mt-15"
       id="testimonios"
     >
       <div className="max-w-[1280px] mx-auto">

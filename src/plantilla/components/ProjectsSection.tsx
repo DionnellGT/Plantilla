@@ -9,7 +9,7 @@ interface ProjectsSectionProps {
 export const ProjectsSection = ({ data, onSelectProject }: ProjectsSectionProps) => {
   return (
     <section
-      className="py-20 bg-surface-container-low px-margin-mobile md:px-gutter scroll-mt-20"
+      className="py-20 bg-surface-container-low px-margin-mobile md:px-gutter scroll-mt-15"
       id="parcelas"
     >
       <div className="max-w-[1280px] mx-auto">
