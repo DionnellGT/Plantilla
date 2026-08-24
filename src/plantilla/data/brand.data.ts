@@ -38,4 +38,4 @@ export const FOOTER_LINK_GROUP = {
 export const FOOTER_DESCRIPTION =
   "Corredora de propiedades, campos y parcelas al sur de Chile.";
 
-export const FOOTER_COPYRIGHT = "© 2026 Derechos Reservados El Avellano";
+export const FOOTER_COPYRIGHT = "© 2026 Derechos Reservados Parcelas Los Lagos.";
