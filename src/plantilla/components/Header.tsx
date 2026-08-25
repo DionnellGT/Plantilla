@@ -12,7 +12,7 @@ export const Header = ({ data, onOpenMobileMenu }: HeaderProps) => {
     <header className="bg-surface/80 dark:bg-surface-container/80 backdrop-blur-xl border-b border-slate-gray/10 sticky top-0 z-50 w-full transition-all duration-300">
       <div className="flex justify-between items-center w-full px-gutter max-w-[1280px] mx-auto h-20">
         <a className="flex-shrink-0" href="#">
-          <img alt={data.logoAlt} className="h-10 w-auto" src={data.logo} />
+          <img alt={data.logoAlt} className="h-15 w-auto" src={data.logo} />
         </a>
 
         <nav className="hidden md:flex gap-8 items-center font-label-md text-label-md">
