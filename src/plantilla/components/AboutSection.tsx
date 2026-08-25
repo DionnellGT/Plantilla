@@ -21,8 +21,8 @@ export const AboutSection = ({ data }: AboutSectionProps) => {
               key={index}
               className={
                 index < data.paragraphs.length - 1
-                  ? "font-body-md text-body-md text-on-surface-variant mb-stack-md"
-                  : "font-body-md text-body-md text-on-surface-variant"
+                  ? "font-body-md text-body-md text-on-surface-variant mb-stack-md whitespace-pre-line"
+                  : "font-body-md text-body-md text-on-surface-variant whitespace-pre-line"
               }
             >
               {paragraph}
