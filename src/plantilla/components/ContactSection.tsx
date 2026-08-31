@@ -1,6 +1,5 @@
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { ChevronDown } from "lucide-react";
 import type { ContactData, Project } from "../data/interfaces";
 
 interface ContactSectionProps {
@@ -173,12 +172,13 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
             Ocurrió un error al enviar. Inténtalo de nuevo.
           </p>
         )}
-        
+
         <button
           type="submit"
+          disabled={isSubmitting}
           className="mb-6 md:mb-3 rounded-xl md:col-span-2 bg-primary text-on-primary font-label-md uppercase tracking-wide py-4 hover:bg-muted-gold hover:text-primary transition-colors duration-300"
         >
-          {data.submitLabel}
+          {isSubmitting ? "Enviando..." : data.submitLabel}
         </button>
       </form>
     </section>
