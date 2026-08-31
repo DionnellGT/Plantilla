@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { ChevronDown } from "lucide-react";
 import type { ContactData, Project } from "../data/interfaces";
 
@@ -7,30 +8,47 @@ interface ContactSectionProps {
   projects: Project[];
 }
 
+interface ContactForm {
+  nombre: string;
+  telefono: string;
+  email: string;
+  proyecto: string;
+}
+
 const inputClasses =
   "w-full bg-surface-container-low text-on-surface-variant font-body-md text-body-md placeholder:text-on-surface-variant/50 rounded-md px-4 py-3 border border-transparent focus:outline-none focus:border-muted-gold transition-colors";
 
 export const ContactSection = ({ data, projects }: ContactSectionProps) => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [projectId, setProjectId] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError]     = useState(false);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    control,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactForm>();
 
-    const projectTitle = projects.find((project) => project.id === projectId)?.title;
-
-    const lines = [
-      "Hola, me gustaría recibir más información.",
-      name && `Nombre: ${name}`,
-      phone && `Teléfono: ${phone}`,
-      email && `Correo: ${email}`,
-      projectTitle && `Proyecto de interés: ${projectTitle}`,
-    ].filter(Boolean);
-
-    const whatsappUrl = `${data.contact.whatsappLink}?text=${encodeURIComponent(lines.join("\n"))}`;
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  const onSubmit = async (data: ContactForm) => {
+    setIsSuccess(false);
+    setIsError(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        setIsSuccess(true);
+        reset();
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        setIsError(true);
+      }
+    } catch {
+      setIsError(true);
+    }
   };
 
   return (
@@ -48,7 +66,7 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
       </div>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="border border-outline rounded-xl px-6 py-12 max-w-[900px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-stack-md fade-and-slide-up visible"
       >
         <div className="mb-6 md:mb-3">
@@ -60,13 +78,14 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
           </label>
           <input
             id="contact-name"
+            {...register("nombre", { required: true })}
             type="text"
             className={inputClasses}
             placeholder={data.namePlaceholder}
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            required
           />
+          {errors.nombre && (
+            <p className="text-danger font-label-md">Este campo es obligatorio</p>
+          )}
         </div>
 
         <div className="mb-6 md:mb-3">
@@ -78,13 +97,14 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
           </label>
           <input
             id="contact-phone"
+            {...register("telefono", { required: true })}
             type="tel"
             className={inputClasses}
             placeholder={data.phonePlaceholder}
-            value={phone}
-            onChange={(event) => setPhone(event.target.value)}
-            required
           />
+          {errors.telefono && (
+            <p className="text-danger font-label-md">Este campo es obligatorio</p>
+          )}
         </div>
 
         <div className="mb-6 md:mb-3">
@@ -96,13 +116,14 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
           </label>
           <input
             id="contact-email"
+            {...register("email", { required: true })}
             type="email"
             className={inputClasses}
             placeholder={data.emailPlaceholder}
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
           />
+          {errors.email && (
+            <p className="text-danger font-label-md">Este campo es obligatorio</p>
+          )}
         </div>
 
         <div className="mb-6 md:mb-3">
@@ -113,25 +134,46 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
             Proyecto de Interés
           </label>
           <div className="relative">
-            <select
-              id="contact-project"
-              className={`${inputClasses} appearance-none pr-10 cursor-pointer`}
-              value={projectId}
-              onChange={(event) => setProjectId(event.target.value)}
-            >
-              <option value="" disabled>
-                {data.projectPlaceholder}
-              </option>
-              {projects.map((project) => (
-                <option key={project.id} value={project.id}>
-                  {project.title}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant" />
+
+            <Controller
+                    name="proyecto"
+                    control={control}
+                    rules={{
+                      validate: (v) => (v && v !== "") || "Debes seleccionar un proyecto",
+                    }}
+                    render={({ field }) => (
+                      <select
+                        id="contact-project"
+                        className={`${inputClasses} appearance-none pr-10 cursor-pointer`}
+                        value={field.value}
+                        onChange={(event) => field.onChange(event.target.value)}
+                      >
+                        <option value="" disabled>
+                          {data.projectPlaceholder}
+                        </option>
+                        {projects.map((project) => (
+                          <option key={project.id} value={project.id}>
+                            {project.title}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+              />
           </div>
         </div>
 
+        {/* Feedback */}
+        {isSuccess && (
+          <p className="text-green-600 font-manrope text-[13px] text-center">
+            ✓ Mensaje enviado. ¡Pronto nos pondremos en contacto!
+          </p>
+        )}
+        {isError && (
+          <p className="text-red-400 font-manrope text-[13px] text-center">
+            Ocurrió un error al enviar. Inténtalo de nuevo.
+          </p>
+        )}
+        
         <button
           type="submit"
           className="mb-6 md:mb-3 rounded-xl md:col-span-2 bg-primary text-on-primary font-label-md uppercase tracking-wide py-4 hover:bg-muted-gold hover:text-primary transition-colors duration-300"
