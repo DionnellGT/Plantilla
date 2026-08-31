@@ -10,10 +10,10 @@ export default async function handler(req: Request) {
   }
 
   try {
-    const { nombre, apellido, email, telefono, proyecto, mensaje } = await req.json();
+    const { nombre, email, telefono, proyecto } = await req.json();
 
     // Validación mínima de datos requeridos
-    if (!nombre || !email || !telefono || !proyecto || !mensaje) {
+    if (!nombre || !email || !telefono || !proyecto) {
       return new Response(
         JSON.stringify({ success: false, message: "Faltan campos requeridos" }),
         { status: 400 }
