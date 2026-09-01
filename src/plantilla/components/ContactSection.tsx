@@ -12,6 +12,7 @@ interface ContactForm {
   telefono: string;
   email: string;
   proyecto: string;
+  tiempoEntrega: string;
 }
 
 const inputClasses =
@@ -19,7 +20,6 @@ const inputClasses =
 
 export const ContactSection = ({ data, projects }: ContactSectionProps) => {
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError]     = useState(false);
 
   const {
     register,
@@ -31,22 +31,28 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
 
   const onSubmit = async (data: ContactForm) => {
     setIsSuccess(false);
-    setIsError(false);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
+      await fetch(
+      "https://script.google.com/macros/s/AKfycbwGPBJS5EcPyn16uChhE1KTWhTsmAtpGnmt5iontG9uxIM2QDRt01s7_Mm8hhswUgkh/exec",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+      );
       if (res.ok) {
         setIsSuccess(true);
         reset();
         setTimeout(() => setIsSuccess(false), 5000);
       } else {
-        setIsError(true);
+        setIsSuccess(false);
       }
     } catch {
-      setIsError(true);
+      setIsSuccess(false);
     }
   };
 
@@ -133,43 +139,67 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
             Proyecto de Interés
           </label>
           <div className="relative">
-
             <Controller
-                    name="proyecto"
-                    control={control}
-                    rules={{
-                      validate: (v) => (v && v !== "") || "Debes seleccionar un proyecto",
-                    }}
-                    render={({ field }) => (
-                      <select
-                        id="contact-project"
-                        className={`${inputClasses} appearance-none pr-10 cursor-pointer`}
-                        value={field.value}
-                        onChange={(event) => field.onChange(event.target.value)}
-                      >
-                        <option value="" disabled>
-                          {data.projectPlaceholder}
-                        </option>
-                        {projects.map((project) => (
-                          <option key={project.id} value={project.id}>
-                            {project.title}
-                          </option>
-                        ))}
-                      </select>
-                    )}
-              />
+              name="proyecto"
+              control={control}
+              render={({ field }) => (
+                <select
+                  id="contact-project"
+                  className={`${inputClasses} appearance-none pr-10 cursor-pointer`}
+                  value={field.value}
+                  onChange={(event) => field.onChange(event.target.value)}
+                >
+                  <option value="" disabled>
+                    {data.projectPlaceholder}
+                  </option>
+                  {projects.map((project) => (
+                    <option key={project.id} value={project.title}>
+                      {project.title}
+                    </option>
+                  ))}
+                </select>
+              )}
+            />
           </div>
+        </div>
+
+        <div className="mb-6 md:mb-3">
+         <label
+           htmlFor="contact-tiempo-entrega"
+           className="block font-label-md text-label-md text-gray-500 font-bold mb-3"
+         >
+            Tiempo de Entrega
+         </label>
+         <div className="relative">
+           <Controller
+             name="tiempoEntrega"
+             control={control}
+             render={({ field }) => (
+               <select
+                 id="contact-tiempo-entrega"
+                 className={`${inputClasses} appearance-none pr-10 cursor-pointer`}
+                 value={field.value}
+                 onChange={(event) => field.onChange(event.target.value)}
+               >
+                 <option value="Entrega Inmediata" >
+                   Entrega Inmediata
+                 </option>
+                 <option value="6 meses -1 año">
+                   6 meses -1 año
+                 </option>
+                  <option value="1-2 años">
+                   1-2 años
+                 </option>
+               </select>
+             )}
+           />
+         </div>
         </div>
 
         {/* Feedback */}
         {isSuccess && (
           <p className="text-green-600 font-manrope text-[13px] text-center">
             ✓ Mensaje enviado. ¡Pronto nos pondremos en contacto!
-          </p>
-        )}
-        {isError && (
-          <p className="text-red-400 font-manrope text-[13px] text-center">
-            Ocurrió un error al enviar. Inténtalo de nuevo.
           </p>
         )}
 
