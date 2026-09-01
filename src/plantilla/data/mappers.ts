@@ -149,6 +149,9 @@ export const mapFooter = (bundle: ApiLandingBundle): FooterData => {
     misDatos?.facebook
       ? { id: "facebook", name: "Facebook", href: misDatos.facebook, icon: "facebook" as const }
       : null,
+    misDatos?.tiktok
+      ? { id: "tiktok", name: "TikTok", href: misDatos.tiktok, icon: "tiktok" as const }
+      : null,
   ].filter((link): link is SocialLink => link !== null);
 
   return {

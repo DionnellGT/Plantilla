@@ -147,6 +147,7 @@ export interface ApiLandingMisDatos {
   telefono: string | null;
   facebook: string | null;
   instagram: string | null;
+  tiktok: string | null;
 }
 
 export interface ApiLandingProyecto {
