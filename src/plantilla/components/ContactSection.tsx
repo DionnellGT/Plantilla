@@ -89,7 +89,7 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
             placeholder={data.namePlaceholder}
           />
           {errors.nombre && (
-            <p className="text-danger font-label-md">Este campo es obligatorio</p>
+            <span className="text-red-400 text-[11px]">Este campo es obligatorio</span>
           )}
         </div>
 
@@ -108,7 +108,7 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
             placeholder={data.phonePlaceholder}
           />
           {errors.telefono && (
-            <p className="text-danger font-label-md">Este campo es obligatorio</p>
+            <span className="text-red-400 text-[11px]">Este campo es obligatorio</span>
           )}
         </div>
 
@@ -127,7 +127,7 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
             placeholder={data.emailPlaceholder}
           />
           {errors.email && (
-            <p className="text-danger font-label-md">Este campo es obligatorio</p>
+            <span className="text-red-400 text-[11px]">Este campo es obligatorio</span>
           )}
         </div>
 
@@ -142,15 +142,17 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
             <Controller
               name="proyecto"
               control={control}
+              rules={{
+                      validate: (v) => (v && v !== "") || "Debes seleccionar un proyecto",
+                    }}
               render={({ field }) => (
                 <select
                   id="contact-project"
                   className={`${inputClasses} appearance-none pr-10 cursor-pointer`}
-                  value={field.value}
-                  onChange={(event) => field.onChange(event.target.value)}
+                  {...field}
                 >
-                  <option value="" disabled>
-                    {data.projectPlaceholder}
+                  <option value="">
+                    Selecciona un proyecto
                   </option>
                   {projects.map((project) => (
                     <option key={project.id} value={project.title}>
@@ -160,6 +162,9 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
                 </select>
               )}
             />
+            {errors.proyecto && (
+              <span className="text-red-400 text-[11px]">{errors.proyecto.message}</span>
+            )}
           </div>
         </div>
 
@@ -174,13 +179,18 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
            <Controller
              name="tiempoEntrega"
              control={control}
+             rules={{
+                      validate: (v) => (v && v !== "") || "Debes seleccionar un Tiempo de Entrega",
+                    }}
              render={({ field }) => (
                <select
                  id="contact-tiempo-entrega"
                  className={`${inputClasses} appearance-none pr-10 cursor-pointer`}
-                 value={field.value}
-                 onChange={(event) => field.onChange(event.target.value)}
+                 {...field}
                >
+                 <option value="" >
+                   Selecciona una opción
+                 </option>
                  <option value="Entrega Inmediata" >
                    Entrega Inmediata
                  </option>
@@ -193,6 +203,9 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
                </select>
              )}
            />
+           {errors.tiempoEntrega && (
+              <span className="text-red-400 text-[11px]">{errors.tiempoEntrega.message}</span>
+            )}
          </div>
         </div>
 
