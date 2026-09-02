@@ -13,6 +13,7 @@ interface ContactForm {
   email: string;
   proyecto: string;
   tiempoEntrega: string;
+  formaDePago: string;
 }
 
 const inputClasses =
@@ -205,6 +206,45 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
            />
            {errors.tiempoEntrega && (
               <span className="text-red-400 text-[11px]">{errors.tiempoEntrega.message}</span>
+            )}
+         </div>
+        </div>
+
+        <div className="mb-6 md:mb-3">
+         <label
+           htmlFor="contact-forma-de-pago"
+           className="block font-label-md text-label-md text-gray-500 font-bold mb-3"
+         >
+            Forma de Pago
+         </label>
+         <div className="relative">
+           <Controller
+             name="formaDePago"
+             control={control}
+             rules={{
+                      validate: (v) => (v && v !== "") || "Debes seleccionar una Forma de Pago",
+                    }}
+             render={({ field }) => (
+               <select
+                 id="contact-forma-de-pago"
+                 className={`${inputClasses} appearance-none pr-10 cursor-pointer`}
+                 {...field}
+               >
+                 <option value="" >
+                   Selecciona una opción
+                 </option>
+                 <option value="Al Contado Con Descuento" >
+                   Al Contado Con Descuento
+                 </option>
+                 <option value="Credito Directo">
+                   Credito Directo
+                 </option>
+                 
+               </select>
+             )}
+           />
+           {errors.formaDePago && (
+              <span className="text-red-400 text-[11px]">{errors.formaDePago.message}</span>
             )}
          </div>
         </div>
