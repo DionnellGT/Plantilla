@@ -17,11 +17,11 @@ export const WhatsAppButtonFixed = (data?: { whatsappNumber?: string }) => {
       className="
         fixed
         bottom-6
-        right-6
+        right-3
         z-50
         flex
-        h-14
-        w-14
+        h-12
+        w-12
         items-center
         justify-center
         rounded-full

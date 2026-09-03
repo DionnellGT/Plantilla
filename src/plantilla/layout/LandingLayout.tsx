@@ -48,7 +48,9 @@ export const LandingLayout = () => {
       <Outlet />
 
       {footerData && <Footer data={footerData} />}
-      <WhatsAppButtonFixed whatsappNumber={navigationData?.contact.whatsappNumber} />
+      <div className="block md:hidden">
+        <WhatsAppButtonFixed whatsappNumber={navigationData?.contact.whatsappNumber} />
+      </div>
     </div>
   );
 };
