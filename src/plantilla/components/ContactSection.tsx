@@ -14,6 +14,7 @@ interface ContactForm {
   proyecto: string;
   tiempoEntrega: string;
   formaDePago: string;
+  asesor: string;
 }
 
 const inputClasses =
@@ -31,6 +32,7 @@ export const ContactSection = ({ data, projects }: ContactSectionProps) => {
   } = useForm<ContactForm>();
 
   const onSubmit = async (data: ContactForm) => {
+    data.asesor = "Test Plantilla 1"
     setIsSuccess(false);
     try {
       const res = await fetch("/api/contact", {
