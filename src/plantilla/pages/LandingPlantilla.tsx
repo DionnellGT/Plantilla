@@ -13,6 +13,7 @@ import { useContact } from "../hook/useContact";
 import { useScrollReveal } from "../hook/useScrollReveal";
 import type { Project } from "../data/interfaces";
 
+
 export const LandingPlantilla = () => {
   const { data: heroData } = useHero();
   const { data: aboutData } = useAbout();
